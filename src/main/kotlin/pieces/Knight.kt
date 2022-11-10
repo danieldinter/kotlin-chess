@@ -5,6 +5,14 @@ import gg.dani.chess.board.Coordinate
 import gg.dani.chess.board.Square
 import gg.dani.chess.helpers.Color
 
+/**
+ * Class representing the Knight piece
+ *
+ * @constructor Create a new Knight piece
+ *
+ * @param color the color of the piece (black or white)
+ * @param currentPosition the position on which the piece is located
+ */
 class Knight(color: Color, currentPosition: Square) : Piece(color, "Knight", currentPosition) {
 
     override fun getAccessibleSquares(board: Board): List<Square> {

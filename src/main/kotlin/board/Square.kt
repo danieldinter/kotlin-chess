@@ -4,6 +4,14 @@ import gg.dani.chess.helpers.Color
 import gg.dani.chess.pieces.Piece
 import java.util.*
 
+/**
+ * A square on the [Board] located at a [Coordinate]
+ * Can hold a [Piece]
+ * Has a cosmetic [Color]: black or white
+ *
+ * @property coordinate the location of the square
+ * @constructor Create a new empty square
+ */
 class Square(val coordinate: Coordinate) {
 
     val color: Color

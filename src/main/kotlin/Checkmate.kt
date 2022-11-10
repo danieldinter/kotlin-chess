@@ -12,7 +12,18 @@ import kotlin.math.max
 import kotlin.math.min
 
 
-// Based on https://github.com/jlundstedt/chess-java/blob/master/src/CheckmateDetector.java
+/**
+ * Checks a board state for a check or a checkmate
+ *
+ * Based on https://github.com/jlundstedt/chess-java/blob/master/src/CheckmateDetector.java
+ *
+ * @property board the board state to be analyzed
+ * @property whiteKing the white-colored king piece
+ * @property whitePieces the white-colored pieces (including the king)
+ * @property blackKing the black-colored king piece
+ * @property blackPieces the black-colored pieces (including the king)
+ * @constructor Create a new detector for check and checkmate
+ */
 class Checkmate(
     private val board: Board,
     private val whiteKing: King,
@@ -81,6 +92,11 @@ class Checkmate(
         }
     }
 
+    /**
+     * Is white checked
+     *
+     * @return
+     */
     fun isWhiteChecked(): Boolean {
         updateMoves()
         // check that current square of white king is not in black moves
@@ -92,6 +108,11 @@ class Checkmate(
         }
     }
 
+    /**
+     * Is black checked
+     *
+     * @return
+     */
     fun isBlackChecked(): Boolean {
         updateMoves()
         // check that current square of black king is not in white moves
@@ -110,10 +131,20 @@ class Checkmate(
             isBlackChecked()
     }
 
+    /**
+     * Is white checkmated
+     *
+     * @return
+     */
     fun isWhiteCheckmated(): Boolean {
         return isCheckmated(whiteMoves, blackMoves, whiteKing)
     }
 
+    /**
+     * Is black checkmated
+     *
+     * @return
+     */
     fun isBlackCheckmated(): Boolean {
         return isCheckmated(blackMoves, whiteMoves, blackKing)
     }
@@ -308,6 +339,13 @@ class Checkmate(
         return canBlock
     }
 
+    /**
+     * Test move success
+     *
+     * @param piece
+     * @param to
+     * @return
+     */
     fun testMoveSuccess(piece: Piece, to: Square): Boolean {
         var isMoveSuccessful = true
 
@@ -347,6 +385,11 @@ class Checkmate(
         return isMoveSuccessful
     }
 
+    /**
+     * Get movable squares
+     *
+     * @return
+     */
     fun getMovableSquares(): MutableList<Square> {
         movableSquares.clear()
         if (isWhiteChecked()) {

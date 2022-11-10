@@ -4,6 +4,14 @@ import gg.dani.chess.board.Board
 import gg.dani.chess.board.Square
 import gg.dani.chess.helpers.Color
 
+/**
+ * Class representing the King piece
+ *
+ * @constructor Create a new King piece
+ *
+ * @param color the color of the piece (black or white)
+ * @param currentPosition the position on which the piece is located
+ */
 class King(color: Color, currentPosition: Square) : Piece(color, "King", currentPosition), LinearMovable,
     DiagonalMovable {
 

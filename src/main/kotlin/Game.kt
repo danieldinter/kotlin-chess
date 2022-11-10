@@ -6,6 +6,11 @@ import gg.dani.chess.helpers.Color
 import gg.dani.chess.pieces.Piece
 import kotlin.random.Random
 
+/**
+ * Game
+ *
+ * @constructor Create a new game
+ */
 class Game : IObservable {
     var board = Board()
     val playerOne: Player
@@ -40,6 +45,12 @@ class Game : IObservable {
             playerOne
     }
 
+    /**
+     * Get the legal moves of a piece
+     *
+     * @param piece the piece for which the legal moves should be determined
+     * @return returns a list of squares that the piece can move to
+     */
     fun getLegalMoves(piece: Piece): List<Square>? {
         return if (playersTurn.color == piece.color)
             piece.getAccessibleSquares(board)
@@ -47,6 +58,12 @@ class Game : IObservable {
             null
     }
 
+    /**
+     * Move a given piece to the target square
+     *
+     * @param piece the piece that should be moved
+     * @param to the target square on which the piece should be placed
+     */
     fun movePiece(piece: Piece, to: Square) {
         if (piece == null)
             return

@@ -5,15 +5,33 @@ import gg.dani.chess.board.Coordinate
 import gg.dani.chess.board.Square
 import gg.dani.chess.helpers.Color
 
+/**
+ * Interface for a linear movable piece like a Rook or Queen
+ *
+ * @constructor Create a linear movable piece
+ */
 interface LinearMovable {
 
     val color: Color
-
     var currentPosition: Square
+
+    /**
+     * Get linearly accessible squares
+     *
+     * @param board the board state
+     * @return a list of accessible squares
+     */
     fun getAccessibleLinearSquares(board: Board): List<Square> {
         return getAccessibleLinearSquares(board, 8)
     }
 
+    /**
+     * Get linearly accessible squares
+     *
+     * @param board the board state
+     * @param stepSize the max number of squares a piece can move in one turn
+     * @return a list of accessible squares
+     */
     fun getAccessibleLinearSquares(board: Board, stepSize: Int): List<Square> {
         val result: MutableList<Square> = mutableListOf()
 

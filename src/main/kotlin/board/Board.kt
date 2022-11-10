@@ -5,6 +5,14 @@ import gg.dani.chess.helpers.Color
 import gg.dani.chess.logger
 import gg.dani.chess.pieces.*
 
+/**
+ * The game board (8x8 is chess standard size) consisting of all the squares and the black and white pieces located on the squares.
+ * Board is represented by a coordinate system using a col(umn) (x-axis) and row (y-axis) coordinate.
+ *
+ * @constructor create a new board
+ *
+ * @param initializePieces if true places the standard lineup of pieces for both colors
+ */
 class Board(initializePieces: Boolean) {
 
     constructor() : this(true) // add default constructor without params
@@ -104,18 +112,44 @@ class Board(initializePieces: Boolean) {
         cm = Checkmate(this, whiteKing, whitePieces, blackKing, blackPieces)
     }
 
+    /**
+     * Get the square at a coordinate (row and col)
+     *
+     * @param col the column coordinate
+     * @param row the row coordinate
+     * @return the square at the coordinate
+     */
     fun getSquare(col: Int, row: Int): Square {
         return getSquare(Coordinate(col, row))
     }
 
+    /**
+     * Get the square at a coordinate (row and col) where the column is represented by its letter (a to h)
+     * Method is useful when using meaningful names for the squares (e.g. 'a1' instead of (1,1)), e.g. in test cases
+     *
+     * @param col the column coordinate a letter (a to h)
+     * @param row the row coordinate
+     * @return the square at the coordinate
+     */
     fun getSquare(col: Char, row: Int): Square {
         return getSquare(Coordinate(col, row))
     }
 
+    /**
+     * Get the square at a coordinate where the coordinate is represented as a [Coordinate] object
+     *
+     * @param at the coordinates of the square
+     * @return the square at the coordinate
+     */
     fun getSquare(at: Coordinate): Square {
         return this.boardState[at]!!
     }
 
+    /**
+     * Get all squares of the board
+     *
+     * @return the squares of the board
+     */
     fun getSquares(): HashMap<Coordinate, Square> {
         return boardState
     }
