@@ -17,6 +17,8 @@ jobs:
           java-version: '17'
           distribution: ${{ matrix.distribution }}
           java-package: 'jdk+fx'
+      - name: Run chmod to make gradlew executable
+        run: chmod +x ./gradlew
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
