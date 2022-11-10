@@ -8,8 +8,8 @@ import gg.dani.chess.helpers.Color
 interface LinearMovable {
 
     val color: Color
-    var currentSquare: Square
 
+    var currentPosition: Square
     fun getAccessibleLinearSquares(board: Board): List<Square> {
         return getAccessibleLinearSquares(board, 8)
     }
@@ -17,8 +17,8 @@ interface LinearMovable {
     fun getAccessibleLinearSquares(board: Board, stepSize: Int): List<Square> {
         val result: MutableList<Square> = mutableListOf()
 
-        val col = currentSquare.col
-        val row = currentSquare.row
+        val col = currentPosition.col
+        val row = currentPosition.row
 
         // check North
         for (i in 1..stepSize) {

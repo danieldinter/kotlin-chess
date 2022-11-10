@@ -8,8 +8,8 @@ import gg.dani.chess.helpers.Color
 interface DiagonalMovable {
 
     val color: Color
-    var currentSquare: Square
 
+    var currentPosition: Square
     fun getAccessibleDiagonalSquares(board: Board): List<Square> {
         return getAccessibleDiagonalSquares(board, 8)
     }
@@ -17,8 +17,8 @@ interface DiagonalMovable {
     fun getAccessibleDiagonalSquares(board: Board, stepSize: Int): List<Square> {
         val result: MutableList<Square> = mutableListOf()
 
-        val col = currentSquare.col
-        val row = currentSquare.row
+        val col = currentPosition.col
+        val row = currentPosition.row
 
         // check North East
         for (i in 1..stepSize) {
