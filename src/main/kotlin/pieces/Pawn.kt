@@ -14,23 +14,23 @@ class Pawn(color: Color, currentPosition: Square) : Piece(color, "Pawn", current
 
         // linear fields
         if (color == Color.WHITE) {
-            val c = Coordinate(currentSquare.col, currentSquare.row + 1)
+            val c = Coordinate(currentPosition.col, currentPosition.row + 1)
             if (c.isWithinBoard()) {
                 val squareInFront = board.getSquare(c)
                 // when pawn was not moved and square is not occupied then add row + 2 to the result
                 if (!wasMoved && !squareInFront.occupied)
-                    result.add(board.getSquare(Coordinate(currentSquare.col, currentSquare.row + 2)))
+                    result.add(board.getSquare(Coordinate(currentPosition.col, currentPosition.row + 2)))
 
                 if (!squareInFront.occupied)
                     result.add(squareInFront)
             }
         } else {
-            val c = Coordinate(currentSquare.col, currentSquare.row - 1)
+            val c = Coordinate(currentPosition.col, currentPosition.row - 1)
             if (c.isWithinBoard()) {
                 val squareInFront = board.getSquare(c)
                 // when pawn was not moved and square is not occupied then add row + 2 to the result
                 if (!wasMoved && !squareInFront.occupied)
-                    result.add(board.getSquare(Coordinate(currentSquare.col, currentSquare.row - 2)))
+                    result.add(board.getSquare(Coordinate(currentPosition.col, currentPosition.row - 2)))
 
                 if (!squareInFront.occupied)
                     result.add(squareInFront)
@@ -40,11 +40,11 @@ class Pawn(color: Color, currentPosition: Square) : Piece(color, "Pawn", current
         val moves: MutableList<Coordinate> = mutableListOf()
         // diagonal fields
         if (color == Color.WHITE) {
-            moves.add(Coordinate(currentSquare.col + 1, currentSquare.row + 1))
-            moves.add(Coordinate(currentSquare.col - 1, currentSquare.row + 1))
+            moves.add(Coordinate(currentPosition.col + 1, currentPosition.row + 1))
+            moves.add(Coordinate(currentPosition.col - 1, currentPosition.row + 1))
         } else {
-            moves.add(Coordinate(currentSquare.col - 1, currentSquare.row - 1))
-            moves.add(Coordinate(currentSquare.col + 1, currentSquare.row - 1))
+            moves.add(Coordinate(currentPosition.col - 1, currentPosition.row - 1))
+            moves.add(Coordinate(currentPosition.col + 1, currentPosition.row - 1))
         }
 
         moves.forEach { c ->

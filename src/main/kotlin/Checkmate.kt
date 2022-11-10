@@ -84,7 +84,7 @@ class Checkmate(
     fun isWhiteChecked(): Boolean {
         updateMoves()
         // check that current square of white king is not in black moves
-        return if (blackMoves[whiteKing.currentSquare].isNullOrEmpty()) {
+        return if (blackMoves[whiteKing.currentPosition].isNullOrEmpty()) {
             movableSquares.addAll(board.getSquares().values)
             false
         } else {
@@ -95,7 +95,7 @@ class Checkmate(
     fun isBlackChecked(): Boolean {
         updateMoves()
         // check that current square of black king is not in white moves
-        return if (whiteMoves[blackKing.currentSquare].isNullOrEmpty()) {
+        return if (whiteMoves[blackKing.currentPosition].isNullOrEmpty()) {
             movableSquares.addAll(board.getSquares().values)
             false
         } else {
@@ -136,7 +136,7 @@ class Checkmate(
 
         // if threat can be captured by another figure then no checkmate
         val threats: MutableList<Piece> =
-            opponentMoves[ownKing.currentSquare]!! // as the king is checked, cannot be empty
+            opponentMoves[ownKing.currentPosition]!! // as the king is checked, cannot be empty
         if (canCapture(ownMoves, threats, ownKing))
             checkmate = false
 
@@ -169,7 +169,7 @@ class Checkmate(
         var canCapture = false
 
         if (threats.size == 1) {
-            val threatSquare = threats.last().currentSquare
+            val threatSquare = threats.last().currentPosition
 
             if (king.getAccessibleSquares(board).contains(threatSquare)) {
                 movableSquares.add(threatSquare)
@@ -200,8 +200,8 @@ class Checkmate(
 
         if (threats.size == 1) {
             val threat = threats.last()
-            val threatSquare = threat.currentSquare
-            val kingsSquare = king.currentSquare
+            val threatSquare = threat.currentPosition
+            val kingsSquare = king.currentPosition
 
             if (kingsSquare.col == threatSquare.col) {
                 val max = max(kingsSquare.row, threatSquare.row)
@@ -311,7 +311,7 @@ class Checkmate(
     fun testMoveSuccess(piece: Piece, to: Square): Boolean {
         var isMoveSuccessful = true
 
-        val initSquare = piece.currentSquare
+        val initSquare = piece.currentPosition
         val initPiece = to.piece
 
         piece.move(to, true)

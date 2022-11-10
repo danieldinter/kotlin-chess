@@ -13,28 +13,28 @@ class Knight(color: Color, currentPosition: Square) : Piece(color, "Knight", cur
         val moves: MutableList<Coordinate> = mutableListOf()
 
         // 1 right, 2 up
-        moves.add(Coordinate(currentSquare.col + 1, currentSquare.row + 2))
+        moves.add(Coordinate(currentPosition.col + 1, currentPosition.row + 2))
 
         // 2 right, 1 up
-        moves.add(Coordinate(currentSquare.col + 2, currentSquare.row + 1))
+        moves.add(Coordinate(currentPosition.col + 2, currentPosition.row + 1))
 
         // 1 right, 2 down
-        moves.add(Coordinate(currentSquare.col + 1, currentSquare.row - 2))
+        moves.add(Coordinate(currentPosition.col + 1, currentPosition.row - 2))
 
         // 2 right, 1 down
-        moves.add(Coordinate(currentSquare.col + 2, currentSquare.row - 1))
+        moves.add(Coordinate(currentPosition.col + 2, currentPosition.row - 1))
 
         // 1 left, 2 up
-        moves.add(Coordinate(currentSquare.col - 1, currentSquare.row + 2))
+        moves.add(Coordinate(currentPosition.col - 1, currentPosition.row + 2))
 
         // 2 left, 1 up
-        moves.add(Coordinate(currentSquare.col - 2, currentSquare.row + 1))
+        moves.add(Coordinate(currentPosition.col - 2, currentPosition.row + 1))
 
         // 1 left, 2 down
-        moves.add(Coordinate(currentSquare.col - 1, currentSquare.row - 2))
+        moves.add(Coordinate(currentPosition.col - 1, currentPosition.row - 2))
 
         // 2 left, 1 down
-        moves.add(Coordinate(currentSquare.col - 2, currentSquare.row - 1))
+        moves.add(Coordinate(currentPosition.col - 2, currentPosition.row - 1))
 
         // check:
         //  - coordinate of move within board

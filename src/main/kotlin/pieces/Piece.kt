@@ -35,9 +35,9 @@ abstract class Piece(var color: Color, private val name: String, var currentSqua
             return false
 
         // move piece
-        currentSquare.piece = null
-        currentSquare = to
-        currentSquare.piece = this
+        currentPosition.piece = null
+        currentPosition = to
+        currentPosition.piece = this
         return true
     }
 
