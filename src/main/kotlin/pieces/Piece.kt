@@ -7,7 +7,7 @@ import gg.dani.chess.logger
 
 abstract class Piece(var color: Color, private val name: String, var currentSquare: Square) {
 
-    protected abstract fun getAccessibleSquares(board: Board): List<Square>
+    abstract fun getAccessibleSquares(board: Board): List<Square>
 
     fun getImageName(): String {
         return name.lowercase() + "_" + color.toString().lowercase() + ".png"
@@ -39,14 +39,6 @@ abstract class Piece(var color: Color, private val name: String, var currentSqua
         currentSquare = to
         currentSquare.piece = this
         return true
-    }
-
-    fun getLegalMoves(board: Board): List<Square> {
-        val accessible = getAccessibleSquares(board)
-
-        //@TODO is this function any use?
-
-        return accessible
     }
 
     override fun toString(): String {

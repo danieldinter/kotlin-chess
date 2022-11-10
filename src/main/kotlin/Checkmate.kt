@@ -64,7 +64,7 @@ class Checkmate(
         // calculate moves by pieces available
         whitePieces.forEach { piece ->
             if (piece !is King) {
-                val moves = piece.getLegalMoves(board)
+                val moves = piece.getAccessibleSquares(board)
                 moves.forEach { square: Square ->
                     whiteMoves[square]?.add(piece)
                 }
@@ -73,7 +73,7 @@ class Checkmate(
 
         blackPieces.forEach { piece ->
             if (piece !is King) {
-                val moves = piece.getLegalMoves(board)
+                val moves = piece.getAccessibleSquares(board)
                 moves.forEach { square: Square ->
                     blackMoves[square]?.add(piece)
                 }
@@ -149,7 +149,7 @@ class Checkmate(
 
     private fun canEvadeCheckmate(opponentMoves: HashMap<Square, MutableList<Piece>>, king: King): Boolean {
         var canEvade = false
-        val kingsMoves: List<Square> = king.getLegalMoves(board)
+        val kingsMoves: List<Square> = king.getAccessibleSquares(board)
 
         kingsMoves.forEach { square ->
             if (testMoveSuccess(king, square) && opponentMoves[square].isNullOrEmpty()) {
@@ -171,7 +171,7 @@ class Checkmate(
         if (threats.size == 1) {
             val threatSquare = threats.last().currentSquare
 
-            if (king.getLegalMoves(board).contains(threatSquare)) {
+            if (king.getAccessibleSquares(board).contains(threatSquare)) {
                 movableSquares.add(threatSquare)
                 if (testMoveSuccess(king, threatSquare))
                     canCapture = true

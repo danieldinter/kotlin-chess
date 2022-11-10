@@ -42,7 +42,7 @@ class Game : IObservable {
 
     fun getLegalMoves(piece: Piece): List<Square>? {
         return if (playersTurn.color == piece.color)
-            piece.getLegalMoves(board)
+            piece.getAccessibleSquares(board)
         else
             null
     }
@@ -55,7 +55,7 @@ class Game : IObservable {
             return
 
         val checkmate = board.cm
-        val legalMoves = piece.getLegalMoves(board)
+        val legalMoves = piece.getAccessibleSquares(board)
         val movable = checkmate.getMovableSquares()
 
         logger.info { checkmate }
