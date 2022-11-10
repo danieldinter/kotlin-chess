@@ -1,0 +1,32 @@
+name: Build and Deploy
+on: [ push, pull_request ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, windows-latest, macos-latest ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17 with JavaFX
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          java-package: 'jdk+fx'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+
+      - name: Deploy if master/main branch
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@4.4.1
+        with:
+          branch: gh-pages
+          folder: build/distributions
+          clean: true
