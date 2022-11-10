@@ -7,6 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-20.04, windows-latest, macos-latest ]
+        distribution: [ 'zulu', 'liberica' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -14,7 +15,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: ${{ matrix.distribution }}
           java-package: 'jdk+fx'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
