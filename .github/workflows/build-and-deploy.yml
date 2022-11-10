@@ -17,6 +17,8 @@ jobs:
           java-version: '17'
           distribution: ${{ matrix.distribution }}
           java-package: 'jdk+fx'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
       - name: Run chmod to make gradlew executable
         run: chmod +x ./gradlew
       - name: Build with Gradle
