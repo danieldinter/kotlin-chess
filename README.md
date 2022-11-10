@@ -1,8 +1,13 @@
 # kotlin-chess
 
-A chess board game programmed in Kotlin language.
+A chess board game programmed in the [Kotlin](https://kotlinlang.org) language.
 
 I made this project to learn the programming language Kotlin. It contains my first-ever written line of Kotlin code.
+
+The app uses:
+- [Gradle](https://gradle.org/) as the build tool
+- [TornadoFX](https://tornadofx.io/), a Kotlin-based wrapper for JavaFX, for the GUI
+- [KDoc](https://kotlinlang.org/docs/kotlin-doc.html#kdoc-syntax) for code documentation
 
 ## Piece images
 
