@@ -1,5 +1,7 @@
 # kotlin-chess
 
+[![Build](https://github.com/danieldinter/kotlin-chess/actions/workflows/build.yml/badge.svg)](https://github.com/danieldinter/kotlin-chess/actions/workflows/build.yml)
+
 A chess board game programmed in the [Kotlin](https://kotlinlang.org) language.
 
 I made this project to learn the programming language Kotlin. It contains my first-ever written line of Kotlin code.
