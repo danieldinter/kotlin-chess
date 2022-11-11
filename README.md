@@ -8,6 +8,7 @@ The app uses:
 - [Gradle](https://gradle.org/) as the build tool
 - [TornadoFX](https://tornadofx.io/), a Kotlin-based wrapper for JavaFX, for the GUI
 - [KDoc](https://kotlinlang.org/docs/kotlin-doc.html#kdoc-syntax) for code documentation
+- [Kotest](https://kotest.io/) for testing
 
 ## Piece images
 

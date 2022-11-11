@@ -23,6 +23,10 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.3")
     implementation("ch.qos.logback:logback-classic:1.4.4")
     testImplementation(kotlin("test"))
+    val kotest = "5.5.4"
+    testImplementation("io.kotest:kotest-runner-junit5:$kotest")
+    testImplementation("io.kotest:kotest-assertions-core:$kotest")
+    testImplementation("io.kotest:kotest-property:$kotest")
 }
 
 javafx {
