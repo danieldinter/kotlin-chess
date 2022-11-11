@@ -4,6 +4,7 @@ import gg.dani.chess.game.Checkmate
 import gg.dani.chess.helpers.Color
 import gg.dani.chess.logger
 import gg.dani.chess.pieces.*
+import java.lang.IllegalArgumentException
 
 /**
  * The game board (8x8 is chess standard size) consisting of all the squares and the black and white pieces located on the squares.
@@ -133,6 +134,26 @@ class Board(initializePieces: Boolean) {
      */
     fun getSquare(col: Char, row: Int): Square {
         return getSquare(Coordinate(col, row))
+    }
+
+    /**
+     * Get the square at a coordinate where the coordinate is represented by a string (letter and number)
+     * Method is useful when using meaningful names for the squares (e.g. "a1" instead of (1,1)), e.g. in test cases
+     *
+     * @param square the string name of the square (e.g. "a1")
+     * @return the square at the coordinate
+     * @throws IllegalArgumentException if the string is not exactly one letter and a number
+     */
+    fun getSquare(square: String): Square {
+        val letters = ColCoordinate.Conversion.letters
+        val intRange = (1..8)
+        val first = square[0]
+        val second = square[1].digitToInt()
+        if(square.length == 2 && letters.contains(first) && intRange.contains(second))
+            return getSquare(first, second)
+
+        // else throw exception
+        throw IllegalArgumentException("Square name has to be a Char in $letters plus an Integer in $intRange")
     }
 
     /**
