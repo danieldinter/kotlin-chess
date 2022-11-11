@@ -15,7 +15,8 @@ import gg.dani.chess.helpers.Color
  */
 class Pawn(color: Color, currentPosition: Square) : Piece(color, "Pawn", currentPosition) {
 
-    private var wasMoved = false
+    var wasMoved = false
+        private set
 
     override fun getAccessibleSquares(board: Board): List<Square> {
         val result: MutableList<Square> = mutableListOf()
