@@ -66,9 +66,6 @@ class Game : IObservable {
      * @param to the target square on which the piece should be placed
      */
     fun movePiece(piece: Piece, to: Square) {
-        if (piece == null)
-            return
-
         if (piece.color != playersTurn.color)
             return
 
