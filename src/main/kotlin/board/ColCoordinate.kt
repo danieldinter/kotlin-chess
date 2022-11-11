@@ -36,7 +36,7 @@ class ColCoordinate(val value: Int) {
     }
 
     companion object Conversion {
-        private const val letters = "abcdefgh"
+        const val letters = "abcdefgh"
 
         private fun toChar(value: Int): Char {
             return letters.substring(value - 1, value).first()
