@@ -1,4 +1,4 @@
-package gg.dani.chess
+package gg.dani.chess.game
 
 interface IObservable {
     val observers: MutableList<IObserver>

@@ -1,4 +1,4 @@
-package gg.dani.chess
+package gg.dani.chess.game
 
 interface IObserver {
     fun update(winner: Player)

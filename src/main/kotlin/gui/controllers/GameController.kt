@@ -1,8 +1,8 @@
 package gg.dani.chess.gui.controllers
 
-import gg.dani.chess.Game
-import gg.dani.chess.IObserver
-import gg.dani.chess.Player
+import gg.dani.chess.game.Game
+import gg.dani.chess.game.IObserver
+import gg.dani.chess.game.Player
 import gg.dani.chess.board.Square
 import gg.dani.chess.gui.BoardView
 import gg.dani.chess.gui.MainView

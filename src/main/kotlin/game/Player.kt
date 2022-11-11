@@ -1,4 +1,4 @@
-package gg.dani.chess
+package gg.dani.chess.game
 
 import gg.dani.chess.helpers.Color
 

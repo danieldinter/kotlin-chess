@@ -1,4 +1,6 @@
-import gg.dani.chess.Game
+package game
+
+import gg.dani.chess.game.Game
 import gg.dani.chess.helpers.Color
 import gg.dani.chess.pieces.Rook
 import org.junit.jupiter.api.Assertions.assertNotNull

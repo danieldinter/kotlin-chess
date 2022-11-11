@@ -1,6 +1,6 @@
 package gg.dani.chess.gui
 
-import gg.dani.chess.Player
+import gg.dani.chess.game.Player
 import tornadofx.*
 
 class StatsView : View() {

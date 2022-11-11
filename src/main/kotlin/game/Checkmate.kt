@@ -1,8 +1,9 @@
-package gg.dani.chess
+package gg.dani.chess.game
 
 import gg.dani.chess.board.Board
 import gg.dani.chess.board.Square
 import gg.dani.chess.helpers.Color
+import gg.dani.chess.logger
 import gg.dani.chess.pieces.Bishop
 import gg.dani.chess.pieces.King
 import gg.dani.chess.pieces.Piece

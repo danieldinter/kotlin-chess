@@ -1,4 +1,6 @@
-import gg.dani.chess.Checkmate
+package game
+
+import gg.dani.chess.game.Checkmate
 import gg.dani.chess.board.Board
 import gg.dani.chess.board.Coordinate
 import gg.dani.chess.helpers.Color

@@ -1,6 +1,6 @@
 package gg.dani.chess.board
 
-import gg.dani.chess.Checkmate
+import gg.dani.chess.game.Checkmate
 import gg.dani.chess.helpers.Color
 import gg.dani.chess.logger
 import gg.dani.chess.pieces.*
