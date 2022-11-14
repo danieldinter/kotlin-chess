@@ -15,6 +15,20 @@ import gg.dani.chess.logger
  */
 abstract class Piece(var color: Color, private val name: String, var currentPosition: Square) {
 
+    companion object Factory {
+        inline fun <reified T : Piece> create(color: Color, square: Square): T {
+            return when (T::class) {
+                Bishop::class -> Bishop(color, square) as T
+                King::class -> King(color, square) as T
+                Knight::class -> Knight(color, square) as T
+                Pawn::class -> Pawn(color, square) as T
+                Queen::class -> Queen(color, square) as T
+                Rook::class -> Rook(color, square) as T
+                else -> throw IllegalArgumentException("piece type ${T::class} is not known")
+            }
+        }
+    }
+
     /**
      * Get the squares that are accessible by the piece
      *
