@@ -4,7 +4,6 @@ import gg.dani.chess.game.Checkmate
 import gg.dani.chess.helpers.Color
 import gg.dani.chess.logger
 import gg.dani.chess.pieces.*
-import java.lang.IllegalArgumentException
 
 /**
  * The game board (8x8 is chess standard size) consisting of all the squares and the black and white pieces located on the squares.
@@ -19,8 +18,8 @@ class Board(initializePieces: Boolean) {
     constructor() : this(true) // add default constructor without params
 
     lateinit var cm: Checkmate
-    lateinit var whitePieces: MutableList<Piece>
-    lateinit var blackPieces: MutableList<Piece>
+    var whitePieces: MutableList<Piece> = mutableListOf()
+    var blackPieces: MutableList<Piece> = mutableListOf()
 
     companion object {
         const val ROWS = 8
@@ -40,77 +39,71 @@ class Board(initializePieces: Boolean) {
 
         // initialize pieces
         if (initializePieces)
-            initialize()
+            initializePieces()
 
         logger.debug { "Board: $this" }
     }
 
-    private fun initialize() {
+    private fun initializePieces() {
         // Pawns
         for (col in 1..COLS) {
-            val s1 = getSquare(col, 2)
-            s1.piece = Pawn(Color.WHITE, s1)
-
-            val s2 = getSquare(col, 7)
-            s2.piece = Pawn(Color.BLACK, s2)
+            initializePiece<Pawn>(Color.WHITE, Coordinate(col, 2))
+            initializePiece<Pawn>(Color.BLACK, Coordinate(col, 7))
         }
 
         // Rooks
-        val rooks = mapOf(
-            getSquare(1, 1) to Color.WHITE,
-            getSquare(COLS, 1) to Color.WHITE,
-            getSquare(1, ROWS) to Color.BLACK,
-            getSquare(COLS, ROWS) to Color.BLACK
-        )
-        rooks.forEach { (s, color) -> s.piece = Rook(color, s) }
+        initializePiece<Rook>(Color.WHITE, Coordinate(1, 1))
+        initializePiece<Rook>(Color.WHITE, Coordinate(COLS, 1))
+        initializePiece<Rook>(Color.BLACK, Coordinate(1, ROWS))
+        initializePiece<Rook>(Color.BLACK, Coordinate(COLS, ROWS))
 
         // Knights
-        val knights = mapOf(
-            getSquare(2, 1) to Color.WHITE,
-            getSquare(COLS - 1, 1) to Color.WHITE,
-            getSquare(2, ROWS) to Color.BLACK,
-            getSquare(COLS - 1, ROWS) to Color.BLACK
-        )
-        knights.forEach { (s, color) -> s.piece = Knight(color, s) }
+        initializePiece<Knight>(Color.WHITE, Coordinate(2, 1))
+        initializePiece<Knight>(Color.WHITE, Coordinate(COLS - 1, 1))
+        initializePiece<Knight>(Color.BLACK, Coordinate(2, ROWS))
+        initializePiece<Knight>(Color.BLACK, Coordinate(COLS - 1, ROWS))
 
         // Bishops
-        val bishops = mapOf(
-            getSquare(3, 1) to Color.WHITE,
-            getSquare(COLS - 2, 1) to Color.WHITE,
-            getSquare(3, ROWS) to Color.BLACK,
-            getSquare(COLS - 2, ROWS) to Color.BLACK
-        )
-        bishops.forEach { (s, color) -> s.piece = Bishop(color, s) }
+        initializePiece<Bishop>(Color.WHITE, Coordinate(3, 1))
+        initializePiece<Bishop>(Color.WHITE, Coordinate(COLS - 2, 1))
+        initializePiece<Bishop>(Color.BLACK, Coordinate(3, ROWS))
+        initializePiece<Bishop>(Color.BLACK, Coordinate(COLS - 2, ROWS))
 
         // Queens
-        val queens = mapOf(
-            getSquare(4, 1) to Color.WHITE,
-            getSquare(4, ROWS) to Color.BLACK
-        )
-        queens.forEach { (s, color) -> s.piece = Queen(color, s) }
+        initializePiece<Queen>(Color.WHITE, Coordinate(4, 1))
+        initializePiece<Queen>(Color.BLACK, Coordinate(4, ROWS))
 
         // Kings
-        val s1 = getSquare(5, 1)
-        val whiteKing = King(Color.WHITE, s1)
-        s1.piece = whiteKing
-
-        val s2 = getSquare(5, ROWS)
-        val blackKing = King(Color.BLACK, s2)
-        s2.piece = blackKing
-
-        whitePieces = mutableListOf()
-        blackPieces = mutableListOf()
+        val whiteKing = initializePiece<King>(Color.WHITE, Coordinate(5, 1))
+        val blackKing = initializePiece<King>(Color.BLACK, Coordinate(5, ROWS))
 
         // get all pieces from the board, separated by color
-        whitePieces.addAll(boardState.values.filter { square ->
+        /*whitePieces.addAll(boardState.values.filter { square ->
             square.piece != null && square.piece!!.color == Color.WHITE
         }.toList().map { item -> item.piece }.requireNoNulls())
 
         blackPieces.addAll(boardState.values.filter { square ->
             square.piece != null && square.piece!!.color == Color.BLACK
-        }.toList().map { item -> item.piece }.requireNoNulls())
+        }.toList().map { item -> item.piece }.requireNoNulls())*/
 
         cm = Checkmate(this, whiteKing, whitePieces, blackKing, blackPieces)
+    }
+
+    inline fun <reified T : Piece> initializePiece(color: Color, coordinate: Coordinate): T {
+        val square = getSquare(coordinate)
+        return initializePiece<T>(color, square)
+    }
+
+    inline fun <reified T : Piece> initializePiece(color: Color, square: Square): T {
+        val piece = Piece.create<T>(color, square)
+        square.piece = piece
+
+        if (color == Color.WHITE)
+            whitePieces.add(piece)
+        else
+            blackPieces.add(piece)
+
+        return piece
     }
 
     /**
@@ -149,7 +142,7 @@ class Board(initializePieces: Boolean) {
         val intRange = (1..8)
         val first = square[0]
         val second = square[1].digitToInt()
-        if(square.length == 2 && letters.contains(first) && intRange.contains(second))
+        if (square.length == 2 && letters.contains(first) && intRange.contains(second))
             return getSquare(first, second)
 
         // else throw exception
