@@ -1,35 +1,29 @@
 package board
 
 import gg.dani.chess.board.Board
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-internal class EmptyBoardTest {
+internal class EmptyBoardTest: StringSpec({
 
-    private val emptyBoard = Board(false)
+    val emptyBoard = Board(false)
 
-    @Test
-    fun testNoBlackPiecesUninitialized() {
-        assertThrows(UninitializedPropertyAccessException::class.java) { emptyBoard.blackPieces }
+    "black pieces should be empty" {
+        emptyBoard.blackPieces.shouldBeEmpty()
     }
 
-    @Test
-    fun testWhitePiecesUninitialized() {
-        assertThrows(UninitializedPropertyAccessException::class.java) { emptyBoard.whitePieces }
+    "white pieces should be empty" {
+        emptyBoard.whitePieces.shouldBeEmpty()
     }
 
-    @Test
-    fun testSquaresNoPieces() {
+    "no square should contain a piece" {
         emptyBoard.getSquares().values.forEach { square ->
-            assertNull(square.piece)
+            square.piece shouldBe null
+            square.occupied shouldBe false
         }
     }
 
-    @Test
-    fun testSquaresNotOccupied() {
-        emptyBoard.getSquares().values.forEach { square ->
-            assertFalse(square.occupied)
-        }
-    }
-
-}
+})
