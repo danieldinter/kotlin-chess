@@ -2,7 +2,7 @@ name: Publish
 on:
   push:
     tags:  # trigger the publish job on tag creation
-      - *
+      - 'v*'
 
 jobs:
   build:
