@@ -90,12 +90,12 @@ class Board(initializePieces: Boolean) {
     }
 
     inline fun <reified T : Piece> initializePiece(color: Color, coordinate: String): T {
-        return initializePiece<T>(color, Coordinate(coordinate))
+        return initializePiece(color, Coordinate(coordinate))
     }
 
     inline fun <reified T : Piece> initializePiece(color: Color, coordinate: Coordinate): T {
         val square = getSquare(coordinate)
-        return initializePiece<T>(color, square)
+        return initializePiece(color, square)
     }
 
     inline fun <reified T : Piece> initializePiece(color: Color, square: Square): T {
