@@ -7,7 +7,7 @@ import tornadofx.*
 
 class MessageView : View() {
 
-    var label = label {
+    private var label = label {
         font = Font(14.0)
         textFill = Color.GREEN
     }
