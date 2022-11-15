@@ -23,7 +23,7 @@ class Coordinate {
     }
 
     constructor(square: String) {
-        val letters = ColCoordinate.Conversion.letters
+        val letters = ColCoordinate.letters
         val intRange = (1..8)
         val first = square[0]
         val second = square[1].digitToInt()
