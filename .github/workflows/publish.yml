@@ -1,0 +1,19 @@
+name: Publish
+on:
+  push:
+    tags:  # trigger the publish job on tag creation
+      - *
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+  publish:
+    name: publish
+    needs: [build]
+    steps:
+      - name: Publish package
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
