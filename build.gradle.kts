@@ -64,3 +64,11 @@ publishing {
         }
     }
 }
+
+tasks.withType<Jar> {
+    manifest {
+        manifest {
+            attributes["Main-Class"] = application.mainClass
+        }
+    }
+}
