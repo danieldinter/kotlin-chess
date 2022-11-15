@@ -12,7 +12,7 @@ import io.kotest.matchers.shouldBe
 
 class PawnTest : StringSpec({
 
-    var emptyBoard: Board = Board(false)
+    var emptyBoard = Board(false)
 
     beforeEach {
         emptyBoard = Board(false)
