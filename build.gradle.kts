@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation("no.tornado:tornadofx:1.7.20")
-    implementation("io.github.microutils:kotlin-logging-jvm:3.0.3")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
     implementation("ch.qos.logback:logback-classic:1.4.4")
     testImplementation(kotlin("test"))
     val kotest = "5.5.4"
