@@ -16,7 +16,7 @@ import tornadofx.FX
 import tornadofx.add
 import tornadofx.circle
 
-class SquarePane(val square: Square, val gameController: GameController) : StackPane() {
+class SquarePane(val square: Square, private val gameController: GameController) : StackPane() {
 
     private val s = 100.0 // side of rectangle
     private val rec = Rectangle(s, s, s, s)
