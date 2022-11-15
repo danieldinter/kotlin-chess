@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.7.21"
     application
     id("org.openjfx.javafxplugin") version "0.0.13"
+    id("maven-publish")
 }
 
 group = "gg.dani.chess"
@@ -44,4 +45,22 @@ tasks.withType<KotlinCompile> {
 
 application {
     mainClass.set("gg.dani.chess.ChessApp")
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/danieldinter/kotlin-chess")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
 }
