@@ -9,7 +9,8 @@ jobs:
     uses: ./.github/workflows/build.yml
   publish:
     name: publish
-    needs: [build]
+    needs: [ build ]
+    runs-on: [ ubuntu-latest ]
     steps:
       - name: Publish package
         uses: gradle/gradle-build-action@v2
