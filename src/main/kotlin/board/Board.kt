@@ -89,6 +89,10 @@ class Board(initializePieces: Boolean) {
         cm = Checkmate(this, whiteKing, whitePieces, blackKing, blackPieces)
     }
 
+    inline fun <reified T : Piece> initializePiece(color: Color, coordinate: String): T {
+        return initializePiece<T>(color, Coordinate(coordinate))
+    }
+
     inline fun <reified T : Piece> initializePiece(color: Color, coordinate: Coordinate): T {
         val square = getSquare(coordinate)
         return initializePiece<T>(color, square)
@@ -138,15 +142,7 @@ class Board(initializePieces: Boolean) {
      * @throws IllegalArgumentException if the string is not exactly one letter and a number
      */
     fun getSquare(square: String): Square {
-        val letters = ColCoordinate.Conversion.letters
-        val intRange = (1..8)
-        val first = square[0]
-        val second = square[1].digitToInt()
-        if (square.length == 2 && letters.contains(first) && intRange.contains(second))
-            return getSquare(first, second)
-
-        // else throw exception
-        throw IllegalArgumentException("Square name has to be a Char in $letters plus an Integer in $intRange")
+        return getSquare(Coordinate(square))
     }
 
     /**

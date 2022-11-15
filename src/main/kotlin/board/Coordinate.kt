@@ -22,6 +22,17 @@ class Coordinate {
         this.row = RowCoordinate(row)
     }
 
+    constructor(square: String) {
+        val letters = ColCoordinate.Conversion.letters
+        val intRange = (1..8)
+        val first = square[0]
+        val second = square[1].digitToInt()
+        if (square.length == 2 && letters.contains(first) && intRange.contains(second)) {
+            this.col = ColCoordinate(first)
+            this.row = RowCoordinate(second)
+        } else throw IllegalArgumentException("Square name has to be a Char in $letters plus an Integer in $intRange")
+    }
+
     /**
      * Check if the coordinate is within the bounds of the board.
      * On a standard board the column and row values range from 1 to 8. The max number of columns is given by [Board.COLS] and the max number of rows is given by [Board.ROWS].
