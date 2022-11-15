@@ -11,13 +11,13 @@ class StatsView : View() {
         padding = insets(10.0)
     }
 
-    fun drawPlayerInfo(playerOne: Player, playerTwo: Player) {
+    private fun drawPlayerInfo(playerOne: Player, playerTwo: Player) {
         root.add(PlayerLabel(playerOne.toString()))
         root.add(label("vs"))
         root.add(PlayerLabel(playerTwo.toString()))
     }
 
-    fun drawTurnInfo(playersTurn: Player) {
+    private fun drawTurnInfo(playersTurn: Player) {
         root.add(label("turn:"))
         root.add(PlayerLabel(playersTurn.toString()))
     }
