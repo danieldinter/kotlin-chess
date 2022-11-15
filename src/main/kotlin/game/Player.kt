@@ -9,7 +9,7 @@ import gg.dani.chess.helpers.Color
  * @property color Color of the player
  * @constructor Create a new Player
  */
-class Player(val name: String, val color: Color) {
+class Player(private val name: String, val color: Color) {
 
     override fun toString(): String {
         return "${name}(${color})"
