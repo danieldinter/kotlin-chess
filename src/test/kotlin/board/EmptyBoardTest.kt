@@ -4,10 +4,8 @@ import gg.dani.chess.board.Board
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
 
-internal class EmptyBoardTest: StringSpec({
+internal class EmptyBoardTest : StringSpec({
 
     val emptyBoard = Board(false)
 
