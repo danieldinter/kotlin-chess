@@ -33,7 +33,7 @@ class Square(val coordinate: Coordinate) {
     constructor (col: Int, row: Int) : this(Coordinate(col, row))
 
     override fun toString(): String {
-        return coordinate.toString() + "|" + piece?.toString()
+        return "$coordinate" + if(piece != null) { "|$piece" } else ""
     }
 
     override fun equals(other: Any?): Boolean {
