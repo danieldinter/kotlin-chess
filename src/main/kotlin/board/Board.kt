@@ -39,12 +39,12 @@ class Board(initializePieces: Boolean) {
 
         // initialize pieces
         if (initializePieces)
-            initializePieces()
+            initializeStandardPieces()
 
         logger.debug { "Board: $this" }
     }
 
-    private fun initializePieces() {
+    private fun initializeStandardPieces() {
         // Pawns
         for (col in 1..COLS) {
             initializePiece<Pawn>(Color.WHITE, Coordinate(col, 2))
