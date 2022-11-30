@@ -77,15 +77,6 @@ class Board(initializePieces: Boolean) {
         val whiteKing = initializePiece<King>(Color.WHITE, Coordinate(5, 1))
         val blackKing = initializePiece<King>(Color.BLACK, Coordinate(5, ROWS))
 
-        // get all pieces from the board, separated by color
-        /*whitePieces.addAll(boardState.values.filter { square ->
-            square.piece != null && square.piece!!.color == Color.WHITE
-        }.toList().map { item -> item.piece }.requireNoNulls())
-
-        blackPieces.addAll(boardState.values.filter { square ->
-            square.piece != null && square.piece!!.color == Color.BLACK
-        }.toList().map { item -> item.piece }.requireNoNulls())*/
-
         cm = Checkmate(this, whiteKing, whitePieces, blackKing, blackPieces)
     }
 
