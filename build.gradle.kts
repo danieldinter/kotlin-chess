@@ -1,19 +1,19 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "2.2.21"
     application
-    id("org.openjfx.javafxplugin") version "0.0.13"
+    id("org.openjfx.javafxplugin") version "0.1.0"
     id("maven-publish")
+    id("io.kotest") version "6.0.4"
+}
+
+kotlin {
+    jvmToolchain(24)
 }
 
 group = "gg.dani.chess"
 version = "1.0-SNAPSHOT"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
 
 repositories {
     mavenCentral()
@@ -23,24 +23,18 @@ dependencies {
     implementation("no.tornado:tornadofx:1.7.20")
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
     implementation("ch.qos.logback:logback-classic:1.4.4")
-    testImplementation(kotlin("test"))
-    val kotest = "5.5.4"
-    testImplementation("io.kotest:kotest-runner-junit5:$kotest")
-    testImplementation("io.kotest:kotest-assertions-core:$kotest")
-    testImplementation("io.kotest:kotest-property:$kotest")
+    testImplementation("io.kotest:kotest-framework-engine:6.0.4")
+    testImplementation("io.kotest:kotest-assertions-table:6.0.4")
+    testImplementation("io.kotest:kotest-runner-junit5:6.0.4")
 }
 
 javafx {
-    version = "11.0.2"
+    version = "24"
     modules("javafx.controls", "javafx.fxml")
 }
 
-tasks.test {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "17"
 }
 
 application {
