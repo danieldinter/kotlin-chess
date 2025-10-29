@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 17 with JavaFX
+      - name: Set up JDK 24 with JavaFX
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '24'
           distribution: ${{ matrix.distribution }}
           java-package: 'jdk+fx'
           cache: 'gradle'
